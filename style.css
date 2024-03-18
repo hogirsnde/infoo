@@ -1,0 +1,687 @@
+/*=============== GOOGLE FONTS ===============*/
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap");
+
+/*=============== VARIABLES CSS ===============*/
+:root {
+  --header-height: 3.5rem;
+  /*========== Colors ==========*/
+  /*Color mode HSL(hue, saturation, lightness)*/
+  --black-color: hsl(0, 0%, 100%);
+  --black-color-light: hsl(0, 0%, 98%);
+  --black-color-lighten: hsl(220, 20%, 18%);
+  --white-color: rgb(0, 0, 0);
+  --body-color: hsl(220, 100%, 97%);
+
+  /*========== Font and typography ==========*/
+  /*.5rem = 8px | 1rem = 16px ...*/
+  --body-font: "Montserrat", sans-serif;
+  --normal-font-size: .938rem;
+
+  /*========== Font weight ==========*/
+  --font-regular: 400;
+  --font-semi-bold: 600;
+
+  /*========== z index ==========*/
+  --z-tooltip: 10;
+  --z-fixed: 100;
+}
+
+/*========== Responsive typography ==========*/
+@media screen and (min-width: 1024px) {
+  :root {
+    --normal-font-size: 1rem;
+  }
+}
+
+/*=============== BASE ===============*/
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+body {
+  font-family: var(--body-font);
+  font-size: var(--normal-font-size);
+  height: 200vh;
+}
+
+ul {
+  list-style: none;
+  /* Color highlighting when pressed on mobile devices */
+  /*-webkit-tap-highlight-color: transparent;*/
+}
+
+a {
+  text-decoration: none;
+}
+
+/*=============== REUSABLE CSS CLASSES ===============*/
+.container {
+  max-width: 1300px;
+  margin-inline: 1.5rem;
+}
+/*=============== HEADER ===============*/
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: var(--z-fixed);
+  background-color: white;
+}
+.addheader{
+  background-color: var(--black-color);
+  box-shadow: 0 2px 16px hsla(220, 32%, 8%, .3);
+}
+
+
+/*=============== NAV ===============*/
+.nav {
+  height: var(--header-height);
+}
+
+.nav__logo, 
+.fa-bars-staggered, 
+.nav__close {
+  color: var(--white-color);
+}
+
+.nav__data {
+  height: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.nav__logo {
+  display: inline-flex;
+  align-items: center;
+  column-gap: .25rem;
+  color:rgb(0, 0, 0);
+  font-weight: var(--font-semi-bold);
+  /* Color highlighting when pressed on mobile devices */
+  /*-webkit-tap-highlight-color: transparent;*/
+}
+.nav__data img{
+  width: 60px;
+}
+/*---------------------------------------------------------------------- */
+
+.nav__link  img{
+  width: 35px;
+}
+.dropdown__link img{
+  width: 35px;
+}
+.language{
+  display: inline-flex;
+  align-items: center;
+  column-gap: .25rem;
+}
+/*----------------------------------------------------------------------*/
+.nav__logo i {
+  font-weight: initial;
+  font-size: 1.25rem;
+}
+
+.nav__toggle {
+  position: relative;
+  width: 32px;
+  height: 32px;
+}
+
+.fa-bars-staggered, 
+.nav__close {
+  position: absolute;
+  width: max-content;
+  height: max-content;
+  inset: 0;
+  margin: auto;
+  font-size: 1.25rem;
+  cursor: pointer;
+  transition: opacity .1s, transform .4s;
+}
+
+.nav__close {
+  opacity: 0;
+}
+.nav .social{
+display: none;
+}
+
+/* Navigation for mobile devices */
+@media screen and (max-width: 1118px) {
+  .nav__menu {
+    position: absolute;
+    left: 0;
+    padding-top: 20px;
+    top: 3.5rem;
+    width: 100%;
+    height: calc(100vh - 3.5rem);
+    overflow: auto;
+    pointer-events: none;
+    opacity: 0;
+    transition: top .4s, opacity .3s;
+  }
+  .header{
+    padding: 10px 0;
+  }
+  .nav__menu::-webkit-scrollbar {
+    width: 0;
+  }
+  .nav__list {
+    background-color: var(--black-color);
+    padding-top: 1rem;
+    height: 100%;
+  }
+  .dropdown__item:hover .show.dropdown__menu {
+    max-height: 1000px;
+    transition: max-height .4s ease-in;
+  }
+  
+  /* Rotate dropdown icon */
+  .dropdown__item:hover .show.dropdown__arrow {
+    transform: rotate(180deg);
+  }
+
+  .nav .social{
+    display: flex;
+    width: 100%;
+    justify-content: space-evenly;
+  align-items: end;
+  padding: 15px 0;
+  padding-top: 140px;
+  }
+  .nav .social i{
+    font-size: 2rem;
+  }
+  .nav .social .fa-square-instagram{
+    border-radius: 10px;
+    color: transparent;
+    background: -webkit-radial-gradient(30% 107%, circle, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285AEB 90%);
+    background: -o-radial-gradient(30% 107%, circle, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285AEB 90%);
+    background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285AEB 90%);
+    background: -webkit-radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285AEB 90%);
+    background-clip: text;
+    -webkit-background-clip: text;
+  }
+}
+
+.nav__link {
+  color: var(--white-color);
+  background-color: var(--black-color);
+  font-weight: var(--font-semi-bold);
+  padding: 1.25rem 1.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: background-color .3s;
+}
+
+.nav__link:hover {
+  background-color: var(--black-color-light);
+}
+
+/* Show menu */
+.show-menu {
+  opacity: 1;
+  top: 3.5rem;
+  pointer-events: initial;
+}
+
+/* Show icon */
+.show-icon .fa-bars-staggered {
+  opacity: 0;
+  transform: rotate(90deg);
+}
+.show-icon .nav__close {
+  opacity: 1;
+  transform: rotate(90deg);
+}
+
+/*=============== DROPDOWN ===============*/
+.dropdown__item {
+  cursor: pointer;
+}
+
+.dropdown__arrow {
+  font-size: 1.25rem;
+  font-weight: initial;
+  transition: transform .4s;
+}
+
+.dropdown__link, 
+.dropdown__sublink {
+  padding: 1.25rem 1.25rem 1.25rem 2.5rem;
+  color: var(--white-color);
+  background-color: var(--black-color-light);
+  display: flex;
+  align-items: center;
+  column-gap: .5rem;
+  font-weight: var(--font-semi-bold);
+  transition: background-color .3s;
+}
+
+.dropdown__link i, 
+.dropdown__sublink i {
+  font-size: 1.25rem;
+  font-weight: initial;
+}
+
+.dropdown__link:hover, 
+.dropdown__sublink:hover {
+  background-color: var(--black-color);
+}
+
+.dropdown__menu, 
+.dropdown__submenu {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height .4s ease-out;
+}
+
+
+/*=============== DROPDOWN SUBMENU ===============*/
+.dropdown__add {
+  margin-left: auto;
+}
+
+.dropdown__sublink {
+  background-color: var(--black-color-lighten);
+}
+
+/*=============== BREAKPOINTS ===============*/
+/* For small devices */
+@media screen and (max-width: 340px) {
+  .container {
+    margin-inline: 1rem;
+  }
+
+  .nav__link {
+    padding-inline: 1rem;
+  }
+}
+
+/* For large devices */
+@media screen and (min-width: 1118px) {
+  .container {
+    margin-inline: auto;
+  }
+
+  .nav {
+    height: calc(var(--header-height) + 2rem);
+    display: flex;
+    justify-content: space-between;
+  }
+  .nav__toggle {
+    display: none;
+  }
+  .nav__list {
+    height: 100%;
+    display: flex;
+    column-gap: 3rem;
+  }
+  .nav__link {
+    height: 100%;
+    padding: 0;
+    justify-content: initial;
+    column-gap: .25rem;
+  }
+  .nav__link:hover {
+    background-color: transparent;
+  }
+
+
+  .dropdown__item, 
+  .dropdown__subitem {
+    position: relative;
+  }
+
+  .dropdown__menu, 
+  .dropdown__submenu {
+    max-height: initial;
+    overflow: initial;
+    position: absolute;
+    left: 0;
+    top: 6rem;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity .3s, top .3s;
+  }
+
+  .dropdown__link, 
+  .dropdown__sublink {
+    padding-inline: 1rem 3.5rem;
+  }
+
+  .dropdown__subitem .dropdown__link {
+    padding-inline: 1rem;
+  }
+
+  .dropdown__submenu {
+    position: absolute;
+    left: 100%;
+    top: .5rem;
+  }
+
+  /* Show dropdown menu */
+  .dropdown__item:hover .dropdown__menu {
+    opacity: 1;
+    top: 5.5rem;
+    pointer-events: initial;
+    transition: top .3s;
+  }
+  
+/* Show dropdown menu & submenu */
+.dropdown__item:hover .dropdown__menu {
+  max-height: 1000px;
+  transition: max-height .4s ease-in;
+}
+
+/* Rotate dropdown icon */
+.dropdown__item:hover .dropdown__arrow {
+  transform: rotate(180deg);
+}
+
+
+}
+
+/* ------------------------------------------------------------------------------ */
+.header-fixture_profile{
+  width: 100%;
+  padding: 0 50px;
+  margin-top: 85px;
+  background: url("./photo_2023-12-05_21-30-32.jpeg");
+background-size: cover;
+height: 426px;
+display: flex;
+align-items: center;
+margin-top: 60px;
+overflow: hidden;
+justify-content: space-between;
+}
+.header-fixture_profile .left {
+  color:  white;
+}
+.header-fixture_profile .left h1{
+  font-family: Noto Sans;
+font-size: 50px;
+font-weight: 700;
+line-height: 52px;
+letter-spacing: 0em;
+text-align: left;
+}
+.header-fixture_profile .left p{
+  font-family: Noto Sans;
+  font-size: 32px;
+  font-weight: 700;
+  line-height: 52px;
+  letter-spacing: 0em;
+  text-align: left;
+opacity: .8;  
+}
+.header-fixture_profile .right img{
+  width: 418px;
+  height: 450px;
+  object-fit: cover;
+  border-radius: 199px;
+}
+.header-fixture_profile .left i{
+  font-size: 30px;
+  margin-bottom: 30px;
+}
+
+/*----*/
+.details{
+  overflow: hidden;
+  width: 80%;
+  margin: 20px auto;
+border-radius: 16px;
+border: 1px solid rgb(247, 244, 244);
+box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+}
+.details .head{
+  width: 100%;
+  padding: 15px 30px;
+  background: #E22028;
+}
+.details .footer{
+  padding: 50px;
+  display: flex;
+}
+.details .footer .left{
+width: 45%;
+}
+.details .footer .left h1{
+  position: relative;
+  font-family: Noto Sans;
+font-size: 24px;
+font-weight: 700;
+line-height: 33px;
+letter-spacing: 0em;
+text-align: left;
+}
+.details .footer .left h1::before{
+  position: absolute;
+content: '';
+width: 30%;
+height: 2px;
+bottom: -6px;
+background: linear-gradient(109.6deg, rgb(243, 67, 67) 11.2%, rgb(2, 38, 208) 100.2%);
+}
+.details .footer .center,
+.details .footer  .right{
+  padding: 50px;
+}
+.details .footer .all-right{
+  display: flex;
+}
+.details .footer .center h3,
+.details .footer  .right h3{
+  font-family: Noto Sans;
+  margin-bottom: 50px ;
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 28px;
+  letter-spacing: 0em;
+  text-align: left;  
+}
+.details .footer  .right h3{
+color:#E22028;
+  text-align: right;  
+}
+.details .footer .left p{
+  font-family: Noto Sans;
+font-size: 16px;
+font-weight: 400;
+line-height: 22px;
+letter-spacing: 0em;
+text-align: left;
+padding: 20px 0;
+}
+.details .head h1 {
+color: white;
+font-family: Noto Sans;
+font-size: 36px;
+font-weight: 700;
+line-height: 30px;
+letter-spacing: 0em;
+}
+.season-overview{
+  width: 100%;  
+  box-shadow: rgba(0, 0, 0, 0.05) 0px 0px 0px 1px;
+  margin: 80px 0;
+}
+.season-overview .head h1 {
+background-color: #E22028;
+color: white;
+text-align: center;
+padding: 15px 0;
+}
+.season-overview .footer{
+  width: 100%;  
+  display: flex;
+  flex-wrap: wrap;
+}
+.season-overview .footer .info{
+  width: 20%;
+display: flex;
+flex-wrap: wrap;
+flex-direction: column;
+justify-content: center;
+align-items: center;
+height: 150px;
+margin: 20px 0;
+border-right: 1px solid rgb(245, 244, 244);
+}
+.season-overview .footer .info:last-child{
+border-left: 1px solid rgb(245, 244, 244);
+}
+.season-overview .footer .info h1,
+.season-overview .footer .info p 
+{
+color: #E22028;
+}
+/* ---- */
+.all-players{
+  margin: 30px 0;
+width: 100%;
+display: flex;
+justify-content: center;
+flex-direction:column;
+align-items: center;
+}
+.all-players .header-payers{
+  position: relative;
+  width: 90%;
+  display: flex;
+}
+.all-players .header-payers p{
+  font-family: Noto Sans;
+  font-size: 36px;
+  font-weight: 700;
+  line-height: 87px;
+  letter-spacing: 0em;
+  text-align: left;
+}
+.all-players .palyer{
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  width: 100%;
+}
+.all-players .players {
+  width: 376px;
+  margin: 30px 25px;
+  height: 504px;
+  border-radius: 16px;
+  border: 1px solid rgb(240, 240, 240);  
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  overflow: hidden;
+}
+.all-players .players:hover .right img{
+transform: scale(1.04);
+transition: all 1s ease;
+}
+.all-players .players:hover{
+  background: #E22028;
+  transition: all 1s ease;
+}
+.all-players .players:hover .left .info h3
+, .all-players .players:hover .left .info p{
+color: white;
+transition: all 1s ease;
+}
+.all-players .players .left{
+  margin-right: 90px;
+  height: 80%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.all-players .players .left h1,
+.header-fixture_profile .left h2
+{
+  font-family: Noto Sans;
+font-size: 64px;
+font-weight: 600;
+line-height: 87px;
+letter-spacing: 0em;
+text-align: left;
+text-shadow: 0px 0px 2px  #FF0000;
+color:white;
+}
+.header-fixture_profile .left h2{
+color: white;
+text-shadow: 0px 0px 5px  #FFFFFF;
+}
+.all-players .players .left .info h3{
+  font-family: Noto Sans;
+font-size: 24px;
+font-weight: 700;
+line-height: 30px;
+letter-spacing: 0em;
+text-align: left;
+color: #FF0000;
+}
+.all-players .players .left .info p{
+  font-family: Noto Sans;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 30px;
+  letter-spacing: 0em;
+  text-align: left;
+color: #FF0000;
+}
+.all-players  .players .right{
+  position: relative;
+  height: 100%;
+}
+.all-players  .players .right img{
+width: 350px;
+position: absolute;
+right: -140px;
+height: 100%;
+object-fit: fill;
+}
+
+/* details */
+@media screen and (max-width:1250px){
+.details{
+  width: 90%;
+
+}
+.details .footer{
+  padding: 50px;
+  display: flex;
+  flex-direction: column;
+}
+.details .footer .left{
+  width: 100%;
+}
+.details .footer .left p{
+  font-family: Noto Sans;
+font-size: 16px;
+font-weight: 400;
+line-height: 22px;
+letter-spacing: 0em;
+text-align: left;
+}
+.details .footer .center,
+.details .footer  .right{
+padding-left: 100px;
+}
+.season-overview .footer .info{
+  width: 50%;
+}
+
+}
+
+@media screen and (max-width:710px){
+.details .footer .center,
+.details .footer  .right{
+padding: 0px;
+}
+}
